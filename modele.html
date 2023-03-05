@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title></title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="">
+</head>
+<body>
+<script type="text/javascript" async defer>
+
+
+let input = [];
+ContestResponse();
+
+
+function ContestResponse(){
+    console.error("input = ",input);
+    main(input);
+}
+
+function main(input){
+    const [init, ...data] = input;
+    
+    let grid = initTab(data);
+
+    let res1 = etape1(grid);
+    //let res2 = etape2(res1);
+    //let res3 = etape3(res2);
+
+    console.log(res1);
+}
+
+function initTab(data){
+    let grid = [];
+    data.forEach((elt,idx)=>{
+        const tabElt = elt.split(" ");
+        const obj = {id:tabElt[0], val:parseInt(tabElt[1])}
+        
+        grid.push(tabElt[0]);
+    })
+    grid.sort((a,b)=>{
+        if(a.val === b.val){
+            return b.id - a.id;
+        }
+        return b.val - a.val;
+    })
+    //return grid.filter(el=>el.id==='S').reduce((a,c)=>{return a + c.t},0);
+    console.error(grid);
+    return grid;
+}
+
+
+function etape1(grid){
+    /*let OK = false;
+    for (j=1;j<6;j++){
+        let r = cal.filter(el=>el.id===j).map(e => e.cr);
+        if(!OK) OK=calendar(r,OK);
+    }*/
+    let a = 0;
+    let z = [];
+    grid.forEach((el,idx)=>{
+        //console.error(`ligne[${idx}] = ${el}`);
+        z.push(el);
+    })
+
+    //console.error(`a=${a} / elt=${elt}`);
+    return z;
+}
+
+
+
+</script>
+</body>
+</html>
+
+
+
+

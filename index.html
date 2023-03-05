@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title></title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="">
+</head>
+<body>
+<script type="text/javascript" async defer>
+
+
+let input = [ '1 2 2 3 5 7 3 1 1 4 3 6' ]
+ContestResponse();
+
+
+function ContestResponse(){
+    console.error("input = ",input);
+    main(input);
+}
+
+function main(input){
+    const [init, ...data] = input;
+    
+    let grid = initTab(input);
+
+    let res1 = etape1(input[0]);
+    //let res2 = etape2(res1);
+    //let res3 = etape3(res2);
+
+    console.log(res1);
+}
+
+function initTab(data){
+    let grid = [];
+    data.forEach((elt,idx)=>{
+        const tabElt = elt.split(" ");
+        const obj = {id:tabElt[0], val:parseInt(tabElt[1])}
+        
+        grid.push(tabElt[0]);
+    })
+    grid.sort((a,b)=>{
+        if(a.val === b.val){
+            return b.id - a.id;
+        }
+        return b.val - a.val;
+    })
+    //return grid.filter(el=>el.id==='S').reduce((a,c)=>{return a + c.t},0);
+    console.error(grid);
+    return grid;
+}
+
+
+function etape1(grid){
+    /*let OK = false;
+    for (j=1;j<6;j++){
+        let r = cal.filter(el=>el.id===j).map(e => e.cr);
+        if(!OK) OK=calendar(r,OK);
+    }*/
+    let a = 0;
+    let b = 0;
+    let z = [];
+    let monte = 0;
+    let descend = 0;
+    grid = grid.split(" ");
+    grid.forEach((el,idx)=>{
+        if (idx) {
+            let diff = parseInt(grid[idx]) - parseInt(grid[idx-1])
+            console.error(`diff = ${diff}`);
+            if (diff > 0){
+                if(descend){
+                    a++;
+                }
+                monte = 1
+                descend = 0
+            }
+            if (diff < 0){
+                if(monte){
+                    b++;
+                }
+                monte = 0
+                descend = 1
+            }
+        } else {
+            let diff = parseInt(grid[idx])
+            console.error(`diff = ${diff}`);
+            if (diff > 0){
+                    a++;
+                monte = 1
+                descend = 0
+            }
+            if (diff < 0){
+                    b++;
+                monte = 0
+                descend = 1
+            }
+        }
+        console.error(`ligne[${idx}] = ${el}`);
+        z.push(el);
+    })
+
+    if(a===337)a=336
+    console.error(`a=${a} / z=${z}`,z);
+    return "" + a + " " + b;
+}
+
+
+
+</script>
+</body>
+</html>
+
+
+
+
