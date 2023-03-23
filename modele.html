@@ -16,12 +16,12 @@ ContestResponse();
 
 
 function ContestResponse(){
-    console.error("input = ",input);
+    console.error("let input = ",input);
     main(input);
 }
 
-function main(input){
-    const [init, ...data] = input;
+function main(in0){
+    let [init, ...data] = in0;
     
     let grid = initTab(data);
 
@@ -32,41 +32,41 @@ function main(input){
     console.log(res1);
 }
 
-function initTab(data){
-    let grid = [];
-    data.forEach((elt,idx)=>{
-        const tabElt = elt.split(" ");
-        const obj = {id:tabElt[0], val:parseInt(tabElt[1])}
+function initTab(inp){
+    let out = [];
+    inp.forEach((elt,idx)=>{
+        let it = elt.split(" ");
+        let obj = {id:it[0], val:parseInt(it[1])}
         
-        grid.push(tabElt[0]);
+        out.push(obj);
     })
-    grid.sort((a,b)=>{
+    out.sort((a,b)=>{
         if(a.val === b.val){
             return b.id - a.id;
         }
         return b.val - a.val;
     })
     //return grid.filter(el=>el.id==='S').reduce((a,c)=>{return a + c.t},0);
-    console.error(grid);
-    return grid;
+    console.error(out);
+    return out;
 }
 
 
-function etape1(grid){
+function etape1(inp){
     /*let OK = false;
     for (j=1;j<6;j++){
         let r = cal.filter(el=>el.id===j).map(e => e.cr);
         if(!OK) OK=calendar(r,OK);
     }*/
     let a = 0;
-    let z = [];
-    grid.forEach((el,idx)=>{
+    let out = [];
+    inp.forEach((el,idx)=>{
         //console.error(`ligne[${idx}] = ${el}`);
-        z.push(el);
+        out.push(el);
     })
 
     //console.error(`a=${a} / elt=${elt}`);
-    return z;
+    return out;
 }
 
 

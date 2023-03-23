@@ -6,9 +6,13 @@ function initGrid(x,y=x){
     return pos;
 }
 
+function initArray(){
+    new Array(13).fill(0).map((a,i)=>i)
+}
+
 
 function sortDesc(grid){
-    grid.sort((a,b)=>{
+    return grid.sort((a,b)=>{
         if(a.val === b.val){
             return b.id - a.id;
         }
@@ -18,14 +22,16 @@ function sortDesc(grid){
 
 
 function sortAsc(grid){
-    grid.sort((a,b)=>{
-        if(a.val === b.val){
-            return a.id - b.id;
-        }
-        return a.val - b.val;
+    return grid.sort((a,b)=>{
+        return a - b;
     });
 }
 
+function sortString(grid){
+    return grid.sort((a,b)=>{
+        return a.charCodeAt(0) - b.charCodeAt(0);
+    });
+}
 
 function min(items) {
     return items.reduce(
